@@ -1,0 +1,40 @@
+package intefaces
+
+import (
+	"fmt"
+	"net/http"
+)
+
+type dollars float64
+
+func (d dollars) String() string {
+	return fmt.Sprintf("$%.2f", d)
+}
+
+type database map[string]dollars
+
+func (db database) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	switch req.URL.Path {
+	case "/list":
+		for item, price := range db {
+			fmt.Fprintf(w, "%s: %s \n", item, price)
+		}
+	case "/price":
+		item := req.URL.Query().Get("item")
+		price, ok := db[item]
+		if !ok {
+			w.WriteHeader(http.StatusNotFound)
+			fmt.Fprintf(w, "no such item: %q\n", item)
+			return
+		}
+		fmt.Fprintf(w, "Price of %s is %f \n", item, price)
+	}
+}
+
+func Server() {
+	db := database{"socks": 10, "shoes": 100}
+	err := http.ListenAndServe("localhost:8080", db)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
