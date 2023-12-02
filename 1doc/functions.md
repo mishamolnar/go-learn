@@ -305,5 +305,3 @@ func testPanic() (a int) {
 ```
 
     Answer: It prints `1`, no panic
-
-
