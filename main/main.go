@@ -1,13 +1,19 @@
 package main
 
 import (
-	"go-learn/intefaces"
+	"go-learn/goroutines"
 	"log/slog"
 	"math"
 )
 
 func main() {
-	intefaces.Server()
+	goroutines.RunThumbnails()
+}
+
+func appendSome(arr []int) {
+	arr[1] = 10
+	arr[2] = 20
+	arr[3] = 30
 }
 
 func changeValue(str *string) {

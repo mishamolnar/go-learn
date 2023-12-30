@@ -2,6 +2,8 @@ github.com/GoesToEleven/dog v0.0.0-20230428023317-90bef1c76cb9 h1:WtQjqEAV0EwbFV
 github.com/GoesToEleven/dog v0.0.0-20230428023317-90bef1c76cb9/go.mod h1:bSJZIYrINAWfFsUPONiX6V8GGsCFquPtn5yE6DFvIkE=
 github.com/GoesToEleven/puppy v1.2.0 h1:oH8CmnGauWjv0RmtYu2saAwRaB6MOfx6L+SPZnWmBfk=
 github.com/GoesToEleven/puppy v1.2.0/go.mod h1:WobEgPdFB6u5c9xLvtp3KOhVIdHaYYpH6pZVOcLq0+w=
+github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
+github.com/google/uuid v1.4.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/mishamolnar/golang-dependencies v0.0.0-20231022113102-3a5fd63ef90e h1:Qb3ezZx4JDd22La6mnYlRd6fUBfksSexiIt8krwInhA=
 github.com/mishamolnar/golang-dependencies v0.0.0-20231022113102-3a5fd63ef90e/go.mod h1:wKkeCKnL/Rjxgx0HPgZaZNsaGholUGUSqxPLwWQZtO0=
 github.com/mishamolnar/golang-dependency-one-b v0.0.0-20231022140705-084da7d14d23 h1:347UlfM7Bt+0xOQeaet/VwdXhu5dcGQA9VwWogpbDtk=

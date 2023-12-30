@@ -9,4 +9,7 @@ require (
 	github.com/mishamolnar/golang-dependency-one-b v0.0.0-20231022140705-084da7d14d23
 )
 
-require github.com/mishamolnar/golang-dependency-two v1.0.1-0.20231022114622-d8f02aa91eba // indirect
+require (
+	github.com/google/uuid v1.4.0 // indirect
+	github.com/mishamolnar/golang-dependency-two v1.0.1-0.20231022114622-d8f02aa91eba // indirect
+)
