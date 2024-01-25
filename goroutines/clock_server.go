@@ -18,11 +18,11 @@ func ClockServer() {
 			log.Println(err)
 			continue
 		}
-		go handleConn(conn)
+		go handleClockConn(conn)
 	}
 }
 
-func handleConn(conn net.Conn) {
+func handleClockConn(conn net.Conn) {
 	defer conn.Close()
 	for {
 		_, err := io.WriteString(conn, time.Now().Format("15:04:05:123\n"))

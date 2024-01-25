@@ -1,13 +1,15 @@
 package main
 
 import (
-	"go-learn/goroutines"
+	"fmt"
 	"log/slog"
 	"math"
 )
 
 func main() {
-	goroutines.RunThumbnails()
+	var sl []int
+	sl = append(sl, 10)
+	fmt.Println(sl[0])
 }
 
 func appendSome(arr []int) {

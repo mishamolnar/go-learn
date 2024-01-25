@@ -87,3 +87,37 @@ func main() {
 	fmt.Println(YiB / ZiB) // no overflow, even thought ZiB > 64 bits number. Output: "1024"
 }
 ```
+
+### 12. What is type inference?
+When we decide the type during variable declaration based on right hand side value. 
+
+
+### 13. What will print this code?
+Consider this code snippet:
+
+```go
+package main
+
+import "fmt"
+
+func nilMap(m map[string]string) {
+	m = make(map[string]string)
+}
+
+func main() {
+	var m map[string]string
+	nilMap(m)
+	fmt.Println(m == nil)
+}
+```
+This code will print true, because m is a variable that points to the location of data
+structure `runtime.hmap`. When we pass this variable to the function it receives new data address, to which nil 
+will be assigned
+
+### 14. Why there is no pass-by-reference in go? 
+Because it is impossible to create 2 variables in go that share same memory location as in c++. 
+That is why when you need to share the location of your variable for optimization or mutability you 
+should use pointer data type. 
+
+
+### 15. 

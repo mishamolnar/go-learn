@@ -198,3 +198,81 @@ func printWheel() {
 
 ### 21. Can anonymous field be a pointer? 
 Yes, it can be pointer or value
+
+### 22. What will pring this code snippet? 
+```go
+package main
+
+import "fmt"
+
+func main() {
+        var a [5]int
+        b := a
+        b[2] = 7
+        fmt.Println(a, b)
+}
+```
+
+It prints [0 0 0 0 0] [0 0 7 0 0], because array is a value type 
+and line `b := a` declares a new variable b and copies all the contents of variable a
+
+### 23. What will print code below? 
+```go
+package main
+
+import "fmt"
+
+func changeLength(sl []int) {
+	sl[0] = -1
+	sl = sl[1:]
+	fmt.Printf("slice in changeLength %v \n", sl)
+}
+
+func main() {
+	sl := []int{1, 2, 3, 4, 5}
+	changeLength(sl)
+	fmt.Printf("slice in main %v \n", sl)
+}
+```
+
+this will print: 
+```
+slice in changeLength [2 3 4 5] 
+slice in main [-1 2 3 4 5] 
+```
+
+Outcome: changeLength function has changed the first element of the slice,
+but not the length. The reason why is that slice is the struct data type:
+```
+type slice struct {
+        ptr   unsafe.Pointer
+        len   int
+        cap   int
+}
+```
+And when we pass it to the function then it gets copied with new struct but same values. 
+Because ptr is new and value of it is the same - we can modify slice elements.
+But because len is not a pointer but just an int value - we modify it only for variable sl in function
+`changeLength`. 
+
+
+### 24. Can map contain a nil key?
+Yes, and it will output correct result, but for this map key type should have nil value:
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var m map[*string]int = make(map[*string]int)
+	m[nil] = 1
+	fmt.Println(m[nil]) //prints 1
+}
+```
+
+### What will be if we assign to the nil map? To the nil pointer? Append to the slice?
+Assign to the nil map causes panic
+Assign to the nil slice will cause error because of index out of range
+Append to the nil slice will behave as expected, will allocate memory and place the value on 0 index

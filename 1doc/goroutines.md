@@ -119,4 +119,68 @@ filenames code execution will stop waiting for sizes channel to be empty, but th
 will never happen because wg.Wait() will stop in another thread and prevent
 execution of loop over sizes slice.
 
+### Explain this select statement?
+```go
+select {
+    case <-tick:
+        fmt.Println(countdown)
+    case <-abort:
+        fmt.Println("Aborting")
+		return
+}
+```
+
+Select statement with channels executes in following way:
+- blocks if no goroutines can execute (adding to the full, querying from empty). In this case it will be blocked if both are empty
+- executes if only 1 is ready, in our case it will execute tick or about depending on which one has entry
+- if both are ready - picks randomly. in our case almost imposible 
+
+### How can we canncel goroutine? 
+For this we need function that will return true to every goroutine if it was cancelled
+In order to achieve this we need to create a channel and then check if it was closed. If it was closed -> then cancelled, 
+otherwise not:
+```go
+var done = make(chan struct{})
+
+func cancelled() bool {
+	select {
+	case <-done:
+		return true
+	default:
+		return false
+	}
+}
+```
+Then we just need to close channel done when needed
+
+
+### Datarace definition? 
+A data race occurs whenever two goroutines access the same variable concurrently and at least one of the accesses is a write.
+
+### Is sync.Mutex in golang reentrant?
+No, it is not
+
+### Descrive sync.RWMutex?
+It is read write lock that can be described as multiple readers, single writer lock
+
+### Why do we need sync.Once?
+This object can be used for initialization and verifying that action has taken place exactly once and finished before
+second invocation. 
+example
+
+```go
+package main
+
+import (
+	"image"
+	"sync"
+)
+var initialize sync.Once
+
+func getIcon(filename string) image.Image {
+	initialize.Do(loadIcons)
+	return icons[filename]
+}
+```
+
 
