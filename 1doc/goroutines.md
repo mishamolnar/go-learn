@@ -183,4 +183,16 @@ func getIcon(filename string) image.Image {
 }
 ```
 
+## What will do this code?
+```go
+func main() {
+	ch := make(chan struct{})
+	go func() {
+		_, ok := <-ch
+		fmt.Println(ok)
+	}()
+	time.Sleep(1 * time.Second)
+}
+```
+Answer: it will print nothing because created goroutine will be blocked when trying to read from channel
 

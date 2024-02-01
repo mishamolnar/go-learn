@@ -1,15 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"log/slog"
 	"math"
 )
 
 func main() {
-	var sl []int
-	sl = append(sl, 10)
-	fmt.Println(sl[0])
+
 }
 
 func appendSome(arr []int) {

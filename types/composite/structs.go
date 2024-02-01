@@ -52,6 +52,10 @@ func findByID(ID int) *Employee {
 	return nil
 }
 
+func NewPrivateEmployee()*Employee {
+	return &Employee{}
+}
+
 func employeeCheck() {
 	employees = append(employees, Employee{1, "dilbert", "test", time.Now(), "manager", 123123, 2})
 	findByID(1).Salary = 1
